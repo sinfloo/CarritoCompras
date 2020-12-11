@@ -159,6 +159,7 @@ public class Controlador extends HttpServlet {
             case "AgregarCarrito":
                 agregarCarrito(request);
                 request.setAttribute("cont", listaProductos.size());
+                accionPrincipal="Otros";
                 if (accionPrincipal.equals("Oferta")) {
                     request.getRequestDispatcher("Controlador?accion=Oferta").forward(request, response);
                 } else {
@@ -405,12 +406,9 @@ public class Controlador extends HttpServlet {
                     for (int i = 0; i < items.size(); i++) {
                         FileItem fileItem = (FileItem) items.get(i);
                         if (!fileItem.isFormField()) {
-                            File file = new File("C:\\apache-tomcat-8.5.57\\CarritoCompras1.1\\"+fileItem.getName());
-//                            File file = new File("C:\\appserv\\www\\imagenes\\" + fileItem.getName());
+                            File file = new File("D:\\SinFloo\\Proyectos en Java\\CarritoCompras1.1\\web\\img\\productos\\" + fileItem.getName());
                             fileItem.write(file);
                             p.setImagen("img/productos/" + fileItem.getName());
-
-//                            p.setImagen("http://localhost:82/imagenes/" + fileItem.getName());
                         } else {
                             pro.add(fileItem.getString());
                         }
@@ -446,10 +444,8 @@ public class Controlador extends HttpServlet {
                         FileItem fileItem = (FileItem) items.get(i);
                         if (!fileItem.isFormField()) {
                             if (!fileItem.getName().equals("")) {
-//                                File file = new File("C:\\AppServ\\www\\imagenes\\" + fileItem.getName());
-                                File file = new File("C:\\xampp\\htdocs\\imagenes\\" + fileItem.getName());
+                                File file = new File("D:\\SinFloo\\Proyectos en Java\\CarritoCompras1.1\\web\\img\\productos\\" + fileItem.getName());
                                 fileItem.write(file);
-//                                p.setImagen("http://localhost:82/imagenes/" + fileItem.getName());
                                 p.setImagen("img/productos/" + fileItem.getName());
                             }
                         } else {
@@ -512,7 +508,6 @@ public class Controlador extends HttpServlet {
                 }
                 request.getRequestDispatcher("Controlador?accion=home").forward(request, response);
                 break;
-
 //----------Manteniemitno Usuarios---------------
             case "Usuarios":
                 clientelogueado = cldao.Validar(email, pass);
@@ -548,9 +543,9 @@ public class Controlador extends HttpServlet {
                         if (!fileItem.isFormField()) {
                             String nomfoto = fileItem.getName();
                             if (!"".equals(nomfoto)) {
-                                File file = new File("C:\\xampp\\htdocs\\fotosuser\\" + fileItem.getName());
+                                File file = new File("D:\\SinFloo\\Proyectos en Java\\CarritoCompras1.1\\web\\img\\fotouser\\" + fileItem.getName());
                                 fileItem.write(file);
-                                cli.setFoto("http://localhost/fotosuser/" + fileItem.getName());
+                                cli.setFoto("img/fotouser/" + fileItem.getName());
                             }
                         } else {
                             listausuarios.add(fileItem.getString());
@@ -814,13 +809,11 @@ public class Controlador extends HttpServlet {
             for (int i = 0; i < items.size(); i++) {
                 FileItem fileItem = (FileItem) items.get(i);
                 if (!fileItem.isFormField()) {
-                    if (!"".equals(fileItem.getName())) {
-                        File files=new File("");
-                        String rutas=files.getAbsolutePath();
-                        String d=rutas.substring(0, rutas.length()-4)+"\\webapps\\CarritoCompras1.1\\img\\"+fileItem.getName();
-                        File file = new File(d);
+                    String nomfoto = fileItem.getName();
+                    if (!"".equals(nomfoto)) {
+                        File file = new File("D:\\SinFloo\\Proyectos en Java\\CarritoCompras1.1\\web\\img\\fotouser\\" + fileItem.getName());
                         fileItem.write(file);
-                        c.setFoto("./img/"+fileItem.getName());
+                        c.setFoto("img/fotouser/" + fileItem.getName());
                     }
                 } else {
                     listausuario.add(fileItem.getString());

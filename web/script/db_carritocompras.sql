@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2020 a las 01:27:20
+-- Tiempo de generación: 11-12-2020 a las 06:00:59
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -65,8 +65,8 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`idCliente`, `Dni`, `Nombres`, `Direccion`, `Email`, `Password`, `Foto`, `idRol`) VALUES
-(1, '12345678', 'Administrador', 'Las Camelias', 'admin@gmail.com', '123', 'http://localhost/fotosuser/administrador.png', 1),
-(6, '46123456', 'Juan Romero Aliaga', 'Las Calles Perdidas', 'juan@gmail.com', '123', 'http://localhost/fotosuser/JuanFrente.png', 2);
+(1, '12345678', 'Administrador', 'Las Camelias', 'admin@gmail.com', '123', 'img/fotouser/logo01.png', 1),
+(6, '46123456', 'Juan Romero Aliaga', 'Las Calles Perdidas', 'juan@gmail.com', '123', 'img/fotouser/logo02.png', 2);
 
 -- --------------------------------------------------------
 
@@ -137,9 +137,9 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`idProducto`, `Nombres`, `Foto`, `Descripcion`, `Precio`, `Stock`, `idCategoria`, `estado`) VALUES
-(43, 'Angular', 'img/productos/angular.png', 'Curso de Angular', 45, 100, 1, 'Normal'),
-(44, 'GitHub', 'img/productos/github.png', 'Curso de GitHub', 60, 100, 1, 'Normal'),
-(45, 'Computer Lenovo', 'img/productos/computer.png', 'Computer', 234, 100, 2, 'Normal');
+(49, 'Curso de Java Básico - MVC', 'img/productos/logo-java.png', 'Curso de Java Básico, Programación Orientada  Objeto.', 50, 9997, 1, 'Normal'),
+(51, 'Curso de Java - Spring Boot - MYSQL', 'img/productos/spring-boot.png', 'Curso de Java - Spring Boot - MYSQL, Desarrollo Proyecto CRUD', 100, 9994, 1, 'Normal'),
+(52, 'Curso Angular - API REST - Spring Boot', 'img/productos/angular-springboot.png', 'Desarrollo de Proyecto CRUD - Framework Spring Boot y Angular', 100, 99995, 1, 'Normal');
 
 -- --------------------------------------------------------
 
@@ -180,8 +180,8 @@ CREATE TABLE `tarjeta` (
 --
 
 INSERT INTO `tarjeta` (`idTarjeta`, `Nombre`, `Numero`, `FechaCaducidad`, `CodSeguridad`, `saldo`) VALUES
-(1, 'Juan Romero', '1234-5678-1011-1213', '11/22', '123', 7050),
-(2, 'Maria Torres', '2021-2223-2425-2627', '12/24', '321', 33650);
+(1, 'Juan Romero', '1111111111111111', '01/30', '123', 5635),
+(2, 'Maria Torres', '2222222222222222', '01/30', '123', 32828);
 
 --
 -- Índices para tablas volcadas
@@ -229,6 +229,7 @@ ALTER TABLE `pago`
 --
 ALTER TABLE `producto`
   ADD PRIMARY KEY (`idProducto`),
+  ADD UNIQUE KEY `Nombres` (`Nombres`),
   ADD KEY `idCategoria` (`idCategoria`);
 
 --
@@ -263,25 +264,25 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `idCompras` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `idCompras` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_compras`
 --
 ALTER TABLE `detalle_compras`
-  MODIFY `idDetalle` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
+  MODIFY `idDetalle` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `idPago` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
+  MODIFY `idPago` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `idProducto` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`

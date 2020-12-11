@@ -4,6 +4,7 @@ import com.sinfloo.config.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +33,8 @@ public class ClienteDAO {
                 c.setFoto(rs.getString(7));
                 lista.add(c);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.err.println("Error:"+e);
         }
         return lista;
     }

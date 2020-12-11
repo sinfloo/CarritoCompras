@@ -30,7 +30,7 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="#"><i><img src="img/logo.png" width="50" height="40"></i> LT Store</a>
+            <a class="navbar-brand" href="#"><i><img src="img/logo.png" width="60" height="60"></i> SinFloo Store</a>
 
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -120,7 +120,7 @@
                                         <c:if test="${c.getEstadoProducto()=='70'}">
                                             <img src="img/70.png" height="50" width="60"> 
                                         </c:if>  
-                                        <img src="${c.getImagen()}" width="130" height="110">
+                                        <img src="${c.getImagen()}" width="60" height="60">
                                     </td>
                                     <td>${c.getDescripcion()}</td>
                                     <td>${c.getPrecioCompra()} 
@@ -252,13 +252,13 @@
                                     <form role="form" action="Controlador" method="POST">
                                         <div class="form-group">
                                             <label for="username">Nombres</label>
-                                            <input type="text" class="form-control" name="txtnombre" placeholder="" required="">
+                                            <input type="text" class="form-control" maxlength="20" name="txtnombre" placeholder="" required="">
                                         </div> <!-- form-group.// -->
 
                                         <div class="form-group">
                                             <label for="cardNumber">Nro Tarjeta</label>
                                             <div class="input-group">
-                                                <input type="text" id="numerocard"  class="form-control" name="txtnumero" placeholder="xxxx-xxxx-xxxx-xxxx" required="" >
+                                                <input type="text" id="numerocard" maxlength="16" class="form-control" name="txtnumero" placeholder="xxxx-xxxx-xxxx-xxxx" required="" >
                                                 <div class="input-group-append" >
                                                     <span class="input-group-text text-muted">
                                                         <div class="">                                                        
@@ -273,14 +273,14 @@
                                                 <div class="form-group">
                                                     <label><span class="hidden-xs">Expiration</span> </label>
                                                     <div class="input-group">
-                                                        <input type="number" id="fecha" step="" class="form-control" placeholder="MM/YY" name="txtfecha" required="11111111111111">
+                                                        <input type="text" id="fecha" step="" class="form-control" placeholder="MM/YY" name="txtfecha" required="11111111111111">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
-                                                    <input type="number" name="txtcodigo" id="codigo" class="form-control" required="">
+                                                    <input type="text" maxlength="3" name="txtcodigo" id="codigo" class="form-control" required="">
                                                 </div> <!-- form-group.// -->
                                             </div>
                                         </div> <!-- row.// -->
@@ -297,7 +297,6 @@
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
             <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
             <script src="js/funciones.js" type="text/javascript">
-
             </script>       
             <script>
                 $(document).ready(function () {

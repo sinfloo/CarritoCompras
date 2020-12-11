@@ -20,7 +20,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>         
             <div class="nav-item dropdown">
-                <a class="navbar-brand" style="color: white" href="#" data-toggle="dropdown"><img src="img/logo.png" width="50" height="40"> SinFloo Store</a>
+                <a class="navbar-brand" style="color: white" href="#" data-toggle="dropdown"><img src="img/logo.png" width="60" height="60"> SinFloo Store</a>
                 <div class="dropdown-menu nav-item bg-dark">  
                     <c:if test="${clientelogueado.id!=null&&clientelogueado.id!=0}">
                         <a class="nav-link dropdown-item" style="color: #005AFF" href="./Controlador?accion=Usuarios"><i class="fa fa-angle-right"></i> Usuarios</a>
@@ -37,7 +37,7 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="./Controlador?accion=home"><i class="fas fa-home" style="color: white"></i> Home<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <!--<li class="nav-item dropdown">
                         <a class="nav-link" id="dropdownMenuButton" data-toggle="dropdown" href="./Controlador?accion=Nuevo"><i class="fas fa-sliders-h" style="color: white"></i> Categorias</a>
                         <div class="dropdown-menu nav-item bg-dark">
                             <c:forEach var="cat" items="${categorias}">
@@ -45,7 +45,7 @@
                                 <div class="dropdown-divider"></div>
                             </c:forEach>                          
                         </div>
-                    </li>
+                    </li>-->
                     <li class="nav-item">
                         <a class="nav-link" href="./Controlador?accion=Oferta"><i class="fas fa-plus-circle" style="color: white"></i> Ofertas del Dia</a>
                     </li>                   
@@ -55,12 +55,10 @@
                 </ul>   
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <form action="Controlador" class="form-inline my-2 my-lg-0">
-                        <input style="width:400px" class="form-control mr-sm" name="txtBuscar">
+                        <input placeholder="Buscar" class="form-control mr-sm" name="txtBuscar">
                         <button class="btn btn-outline-primary my-2 my-sm-0 ml-2" type="submit" name="accion" value="BuscarProducto"><i class="fas fa-search"></i> Buscar</button>
-
-
                     </form>  
-                   
+
                 </ul>
                 <ul class="navbar-nav btn-group my-2 my-lg-0" role="group">
                     <c:if test="${clientelogueado.id==null||clientelogueado.id==0}">
@@ -94,14 +92,14 @@
             </div>
         </nav>
         <div class="container mt-4">
-              <div class="row">             
+            <div class="row">             
                 <c:forEach var="p" items="${productos}">
                     <div class="col-sm-4"><!--Solo va cambiar aqui puedes configurar de acuerdo al gusto-->
                         <div class="form-group">
                             <div class="card">
-                                <div class="card-header d-flex">
-                                    <div class="col-lg-8"><i class="fab fa-product-hunt"></i>${p.getNombres()} </div>
-                                    <div class="col-lg-4"><i class="fas fa-box-open"></i> ${p.getStock()}</div>
+                                <div class="card-header">
+                                    <div><i class="fab fa-product-hunt"></i> ${p.getNombres()} </div>
+                                    <!--<div class="col-lg-4"><i class="fas fa-box-open"></i> ${p.getStock()}</div>-->
                                 </div>
                                 <div class="card-body">
                                     <label class="btn btn-outline-warning"><i class="">S/. ${p.getPrecio()}</i></label>
@@ -125,17 +123,14 @@
                                     </c:if>                                                         
                                 </div>
                                 <div class="text-center">                             
-                                    <img src="${p.getImagen()}" width="200" height="170">
+                                    <img src="${p.getImagen()}" style="height: 150px;width:90%; padding: 10px">
                                 </div>
                                 <br>
                                 <div class="card-footer">
                                     <div class="col-sm-14">
-                                        <label>${p.getDescripcion()}</label>     
-                                        
+                                        <label>${p.getDescripcion()}</label>
                                     </div>
-                                  <div class=" col-sm-13 text-center">  
-                                        
-                                        
+                                    <div class=" col-sm-13 text-center">                                         
                                         <div class="modal fade" id="modalStock" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-sm" >
                                                 <div class="modal-title">                                                   
@@ -145,20 +140,20 @@
                                                 </div>
                                             </div>
                                         </div>
-                                         <c:if test="${p.getStock()==0}"> 
-                                          <button data-toggle="modal" data-target="#modalStock" class="btn btn2 btn-outline-primary">Agregar a Carrito<i class="fas fa-cart-plus"></i></button>
+                                        <c:if test="${p.getStock()==0}"> 
+                                            <button data-toggle="modal" data-target="#modalStock" class="btn btn2 btn-outline-primary">Agregar a Carrito<i class="fas fa-cart-plus"></i></button>
                                             <button data-toggle="modal" data-target="#modalStock" class="btn btn-danger">Comprar</button>
-                                         </c:if>
-                                           <c:if test="${p.getStock()!=0}"> 
-                                        <c:if test="${clientelogueado.id==null||clientelogueado.id==0}"> 
-                                            <button data-toggle="modal" onclick="CargarModalLogueo1()" data-target="#myModalLogueo1" class="btn btn2 btn-outline-primary">Agregar a Carrito<i class="fas fa-cart-plus"></i></button>
-                                            <button data-toggle="modal" onclick="CargarModalLogueo1()" data-target="#myModalLogueo1" class="btn btn-danger">Comprar</button>
                                         </c:if>
-                                        <c:if test="${clientelogueado.id!=null&&clientelogueado.id!=0}">
-                                            <a href="Controlador?accion=AgregarCarrito&id=${p.getId()}" class="btn btn2 btn-outline-primary">Agregar a Carrito<i class="fas fa-cart-plus"></i></a>
-                                            <a href="Controlador?accion=Comprar&id=${p.getId()}" class="btn btn-danger">Comprar</a>
-                                        </c:if>
+                                        <c:if test="${p.getStock()!=0}"> 
+                                            <c:if test="${clientelogueado.id==null||clientelogueado.id==0}"> 
+                                                <button data-toggle="modal" onclick="CargarModalLogueo1()" data-target="#myModalLogueo1" class="btn btn2 btn-outline-primary">Agregar a Carrito<i class="fas fa-cart-plus"></i></button>
+                                                <button data-toggle="modal" onclick="CargarModalLogueo1()" data-target="#myModalLogueo1" class="btn btn-danger">Comprar</button>
                                             </c:if>
+                                            <c:if test="${clientelogueado.id!=null&&clientelogueado.id!=0}">
+                                                <a href="Controlador?accion=AgregarCarrito&id=${p.getId()}" class="btn btn2 btn-outline-primary">Agregar a Carrito<i class="fas fa-cart-plus"></i></a>
+                                                <a href="Controlador?accion=Comprar&id=${p.getId()}" class="btn btn-danger">Comprar</a>
+                                            </c:if>
+                                        </c:if>
                                     </div>                         
                                 </div>
                             </div>
@@ -208,7 +203,7 @@
             }
         </script>
         <script  type="text/javascript">
-          
+
         </script>
     </body>
 </html>
